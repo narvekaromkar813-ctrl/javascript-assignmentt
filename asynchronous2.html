@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian News</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6600;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 30px;
+      font-size: 16px;
+      background-color: #138808;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #newsBox {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .news-item {
+      background-color: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 3px solid #ff9933;
+    }
+
+    .news-item h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .news-item p {
+      color: #666;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🇮🇳 Indian News</h1>
+  <button id="fetchNews">Load News</button>
+  <div id="newsBox"></div>
+
+  <script>
+    const fetchButton = document.getElementById('fetchNews');
+    const newsBox = document.getElementById('newsBox');
+
+    // Sample Indian news data
+    const indianNews = [
+      {
+        title: "India's GDP Growth Reaches 7.2% in Latest Quarter",
+        description: "The Indian economy shows strong recovery with improved manufacturing and service sectors."
+      },
+      {
+        title: "Chandrayaan-4 Mission Approved by Government",
+        description: "ISRO to launch next lunar mission focusing on sample return from moon's surface."
+      },
+      {
+        title: "Mumbai Metro Line 3 Opens to Public",
+        description: "The underground metro connects key areas reducing travel time significantly."
+      },
+      {
+        title: "Indian Cricket Team Wins Series 3-1",
+        description: "Rohit Sharma's team dominates with exceptional batting and bowling performances."
+      },
+      {
+        title: "New Education Policy Shows Positive Results",
+        description: "Schools report improved learning outcomes with reformed curriculum structure."
+      }
+    ];
+
+    fetchButton.addEventListener('click', async () => {
+      newsBox.innerHTML = '<p style="text-align:center;">Loading...</p>';
+
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      newsBox.innerHTML = '';
+
+      indianNews.forEach(news => {
+        const newsItem = document.createElement('div');
+        newsItem.className = 'news-item';
+        newsItem.innerHTML = `
+          <h3>${news.title}</h3>
+          <p>${news.description}</p>
+        `;
+        newsBox.appendChild(newsItem);
+      });
+    });
+  </script>
+</body>
+</html>

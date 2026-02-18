@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Telling App</title>
+    <style>
+        .story-container {
+            border: 3px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>Want to hear a short story?</h1>
+    
+    <main class="story-container">
+        <div class="btn-container">
+            <button class="btn" id="scary-btn">Scary Story</button>
+            <button class="btn" id="funny-btn">Funny Story</button>
+            <button class="btn" id="adventure-btn">Adventure Story</button>
+        </div>
+        
+        <p id="result"></p>
+    </main>
+
+    <script>
+        // Select elements
+        const storyContainer = document.querySelector('.story-container');
+        const scaryStoryBtn = document.querySelector('#scary-btn');
+        const funnyStoryBtn = document.querySelector('#funny-btn');
+        const adventureStoryBtn = document.querySelector('#adventure-btn');
+        const resultParagraph = document.querySelector('#result');
+
+        // Story object
+        const storyObj = {
+            scary: {
+                story: "In the dark woods, a group of friends stumbled upon an old, abandoned cabin. They enter the cabin and awaken something malevolent that had been dormant for centuries.",
+                borderColor: "#ee4b2b"
+            },
+            funny: {
+                story: "During a camping trip, Mark decided to show off his culinary skills by cooking dinner over an open fire. However, his attempt caused him to burn the dinner as well as his eyebrows off.",
+                borderColor: "#f1be32"
+            },
+            adventure: {
+                story: "Lost in the heart of the Amazon rain forest, Sarah and Jake stumbled upon an ancient temple. They braved deadly traps and encountered strange wildlife, all while deciphering cryptic clues left behind by a mysterious civilization.",
+                borderColor: "#acd157"
+            }
+        };
+
+        // Display story function
+        function displayStory(genre) {
+            if (storyObj[genre]) {
+                resultParagraph.textContent = storyObj[genre].story;
+                storyContainer.style.borderColor = storyObj[genre].borderColor;
+            }
+        }
+
+        // Add event listeners
+        scaryStoryBtn.addEventListener('click', function() {
+            displayStory("scary");
+        });
+
+        funnyStoryBtn.addEventListener('click', function() {
+            displayStory("funny");
+        });
+
+        adventureStoryBtn.addEventListener('click', function() {
+            displayStory("adventure");
+        });
+    </script>
+</body>
+</html>

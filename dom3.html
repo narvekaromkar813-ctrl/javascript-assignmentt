@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Reactor</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+
+    .emoji-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .emoji-list li {
+      display: inline;
+      margin: 10px;
+    }
+
+    .emoji-btn {
+      font-size: 50px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="title">How are you feeling today?</h1>
+    <ul class="emoji-list">
+      <li><button class="emoji-btn">😀</button></li>
+      <li><button class="emoji-btn">😢</button></li>
+      <li><button class="emoji-btn">😡</button></li>
+      <li><button class="emoji-btn">😴</button></li>
+      <li><button class="emoji-btn">😍</button></li>
+    </ul>
+    <p id="result"></p>
+  </main>
+
+  <script>
+    const emojiButtons = document.querySelectorAll(".emoji-btn");
+    const result = document.querySelector("#result");
+    
+    emojiButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        result.textContent = `You are feeling ${button.textContent}`;
+      });
+    });
+  </script>
+</body>
+</html>

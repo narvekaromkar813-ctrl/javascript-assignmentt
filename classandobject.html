@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library System</title>
+</head>
+<body>
+  <h1>📚 Library Management System</h1>
+  
+  <h2>Add New Book</h2>
+  <input type="text" id="bookTitle" placeholder="Book Title">
+  <input type="text" id="bookAuthor" placeholder="Author Name">
+  <button onclick="addBook()">Add Book</button>
+
+  <div id="bookList">
+    <h2>Library Books</h2>
+  </div>
+
+  <script>
+    // Book Class
+    class Book {
+      constructor(title, author) {
+        this.title = title;
+        this.author = author;
+        this.isBorrowed = false;
+      }
+
+      borrow() {
+        if (!this.isBorrowed) {
+          this.isBorrowed = true;
+          return true;
+        }
+        return false;
+      }
+
+      returnBook() {
+        this.isBorrowed = false;
+      }
+    }
+
+    // Library Class
+    class Library {
+      constructor() {
+        this.books = [];
+      }
+
+      addBook(book) {
+        this.books.push(book);
+      }
+
+      displayBooks() {
+        const bookList = document.getElementById('bookList');
+        bookList.innerHTML = '<h2>Library Books</h2>';
+
+        if (this.books.length === 0) {
+          bookList.innerHTML += '<p>No books in library</p>';
+          return;
+        }
+
+        this.books.forEach((book, index) => {
+          const bookDiv = document.createElement('div');
+          
+          bookDiv.innerHTML = `
+            <p>
+              <strong>${book.title}</strong><br>
+              Author: ${book.author}<br>
+              Status: ${book.isBorrowed ? '❌ Borrowed' : '✅ Available'}
+              ${book.isBorrowed ? 
+                `<br><button onclick="returnBook(${index})">Return Book</button>` : 
+                `<br><button onclick="borrowBook(${index})">Borrow Book</button>`
+              }
+            </p>
+            <hr>
+          `;
+          
+          bookList.appendChild(bookDiv);
+        });
+      }
+    }
+
+    // Create library instance
+    const library = new Library();
+
+    // Add sample books
+    library.addBook(new Book("Harry Potter", "J.K. Rowling"));
+    library.addBook(new Book("The Alchemist", "Paulo Coelho"));
+    library.displayBooks();
+
+    // Add new book
+    function addBook() {
+      const title = document.getElementById('bookTitle').value;
+      const author = document.getElementById('bookAuthor').value;
+
+      if (title && author) {
+        library.addBook(new Book(title, author));
+        library.displayBooks();
+        
+        document.getElementById('bookTitle').value = '';
+        document.getElementById('bookAuthor').value = '';
+      } else {
+        alert('Please enter both title and author');
+      }
+    }
+
+    // Borrow book
+    function borrowBook(index) {
+      if (library.books[index].borrow()) {
+        library.displayBooks();
+        alert(`You borrowed: ${library.books[index].title}`);
+      }
+    }
+
+    // Return book
+    function returnBook(index) {
+      library.books[index].returnBook();
+      library.displayBooks();
+      alert(`You returned: ${library.books[index].title}`);
+    }
+  </script>
+</body>
+</html>

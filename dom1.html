@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Items</title>
+    <style>
+        .filled {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul class="item-list">
+        <li>Jaikishan <button class="favorite-icon">&#9825;</button></li>
+        <li>Omkar <button class="favorite-icon">&#9825;</button></li>
+        <li>Danish <button class="favorite-icon">&#9825;</button></li>
+        <li>Sarthak<button class="favoritr-icon">&#9825;</button></li>
+    </ul>
+    
+    <script>
+        // Get all favorite icon buttons
+        const favoriteButtons = document.querySelectorAll('.favorite-icon');
+
+        // Add click event listener to each button
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Toggle the 'filled' class
+                this.classList.toggle('filled');
+                
+                // Toggle between empty heart and filled heart
+                if (this.classList.contains('filled')) {
+                    // Change to filled heart
+                    this.innerHTML = '&#10084;';
+                } else {
+                    // Change to empty heart
+                    this.innerHTML = '&#9825;';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
